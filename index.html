@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="style.css">
+    <title>Purpose Creative</title>
+    <style>
+        /* Custom styling for order form */
+        .order-form-section {
+            margin: 50px 0;
+            padding: 20px;
+            background-color: #f4f4f4;
+            text-align: center;
+        }
+
+        .order-form-section h2 {
+            font-size: 2rem;
+            margin-bottom: 20px;
+            color: #333;
+        }
+
+        .order-form-section p {
+            font-size: 1rem;
+            margin-bottom: 15px;
+            color: #555;
+        }
+
+        .order-form-btn {
+            background-color: #ff4081;
+            color: white;
+            padding: 12px 25px;
+            font-size: 1.2rem;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+
+        .order-form-btn:hover {
+            background-color: #e63975;
+        }
+
+        .google-form-link {
+            margin-top: 20px;
+            display: block;
+            font-size: 1.1rem;
+            color: #007bff;
+            text-decoration: underline;
+        }
+
+        .google-form-link:hover {
+            color: #0056b3;
+        }
+    </style>
+</head>
+<body>
+
+    <header>
+        <div class="logo">PURPOSE CREATIVE</div>
+    </header>
+
+    <nav class="topnav" id="myTopnav">
+        <a href="#home" class="active">Home</a>
+        <a href="#news">New Stock</a>
+        <a href="#contact">Contact</a>
+        <a href="#about">About</a>
+        <a href="javascript:void(0);" class="icon" onclick="toggleMenu()">&#9776;</a>
+    </nav>
+
+    <section class="main-content">
+        <div class="product">
+            <img src="images/wallet 1.png" alt="Brown Wallet">
+            <div class="product-info">
+                <h2>BROWN WALLET</h2>
+                <p>Takes 6 cards Max, Customized with your name</p>
+                <p class="price">N$200.99</p>
+                <button class="view-item-btn" onclick="redirectToPage('item1.html')">View Item</button>
+            </div>
+        </div>
+
+        <div class="product">
+            <img src="images/wallets 2.png" alt="Black Wallet">
+            <div class="product-info">
+                <h2>BLACK WALLET</h2>
+                <p>Woven pattern, takes 6 cards Max, Customized with your name</p>
+                <p class="price">N$200.99</p>
+                <button class="view-item-btn" onclick="redirectToPage('pwallets.html')">View Item</button>
+            </div>
+        </div>
+
+        <!-- Add more products as needed -->
+        <div class="product">
+            <img src="images/bible.jpg" alt="Bible">
+            <div class="product-info">
+                <h2>BIBLE</h2>
+                <p>Customized bible with picture, Name and back message</p>
+                <p class="price">N$1500.99</p>
+                <button class="view-item-btn" onclick="redirectToPage('bible.html')">View Item</button>
+            </div>
+        </div>
+
+        <div class="product">
+            <img src="images/keyholder.jpg" alt="Keyholder">
+            <div class="product-info">
+                <h2>Keyholder</h2>
+                <p>Customized Keyholder, with picture, message and Name</p>
+                <p class="price">N$115.99</p>
+                <button class="view-item-btn" onclick="redirectToPage('keyholders.html')">View Item</button>
+            </div>
+        </div>
+
+        <div class="product">
+            <img src="images/play.jpg" alt="Watch Us On Duty">
+            <div class="product-info">
+                <h2>Watch Us On Duty</h2>
+                <p>Watch some videos of our production</p>
+                <p class="price">ENJOY!</p>
+                <button class="view-item-btn" onclick="redirectToPage('video.html')">Watch Video</button>
+            </div>
+        </div>
+    </section>
+
+    <!-- Order Form Section -->
+    <section class="order-form-section">
+        <h2>Place Your Order</h2>
+        <div class="container" id="ff-compose"></div>
+<script async defer src="https://formfacade.com/include/116564033054233882829/form/1FAIpQLSew3FTCB99liDcD0N6TiWW_rpXc6i0AzEDTSJ6MZ083uRtbkA/bootstrap.js?div=ff-compose"></script>
+    </section>
+
+    <footer>
+        <div class="footer-content">
+            <p>&copy; 2024 PURPOSE CREATIVE</p>
+        </div>
+    </footer>
+
+    <script>
+        // Function to redirect to another page
+        function redirectToPage(page) {
+            window.location.href = page;
+        }
+
+        // Function to toggle mobile menu
+        function toggleMenu() {
+            var x = document.getElementById("myTopnav");
+            if (x.className === "topnav") {
+                x.className += " responsive";
+            } else {
+                x.className = "topnav";
+            }
+        }
+    </script>
+</body>
+</html>

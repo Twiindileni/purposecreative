@@ -1,0 +1,294 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>Swipe to View Videos</title>
+    <style>
+        /* General reset */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Arial', sans-serif;
+            background-color: #121212;
+            color: white;
+            overflow: hidden;
+            position: relative;
+        }
+
+        .video-wrapper {
+            position: relative;
+            height: 100vh;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .video-container {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            overflow: hidden;
+        }
+
+        video {
+            height: 100%;
+            width: auto;
+            max-width: 100%;
+            border-radius: 10px;
+        }
+
+        .overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            background: rgba(0, 0, 0, 0.5);
+            opacity: 1;
+            transition: opacity 1s ease;
+            z-index: 2;
+        }
+
+        .overlay h1 {
+            font-size: 1.5rem;
+            background-color: #ff4081;
+            padding: 10px 20px;
+            border-radius: 5px;
+            animation: fadeOut 5s forwards;
+        }
+
+        @keyframes fadeOut {
+            0% {
+                opacity: 1;
+            }
+            90% {
+                opacity: 1;
+            }
+            100% {
+                opacity: 0;
+                display: none;
+            }
+        }
+
+        /* Video Info */
+        .video-info {
+            position: absolute;
+            bottom: 20px;
+            left: 20px;
+            z-index: 3;
+            color: white;
+            text-shadow: 0 0 5px rgba(0, 0, 0, 0.7);
+        }
+
+        .video-info h2 {
+            font-size: 1.5rem;
+            margin-bottom: 5px;
+        }
+
+        .video-info p {
+            font-size: 1rem;
+            margin-bottom: 10px;
+        }
+
+        .like-button {
+            background: none;
+            border: none;
+            color: white;
+            font-size: 1.5rem;
+            cursor: pointer;
+            transition: transform 0.3s;
+        }
+
+        .like-button.liked {
+            color: #ff4081;
+            transform: scale(1.1);
+        }
+
+        /* Play/Pause Button */
+        .play-pause-button {
+            position: absolute;
+            bottom: 80px; /* Adjust position as necessary */
+            z-index: 4;
+            background: rgba(255, 255, 255, 0.7);
+            border: none;
+            border-radius: 50%;
+            width: 60px;
+            height: 60px;
+            cursor: pointer;
+            font-size: 1.5rem;
+            transition: background 0.3s;
+        }
+
+        .play-pause-button:hover {
+            background: rgba(255, 255, 255, 1);
+        }
+
+        /* Styling for the transition between videos */
+        .hidden {
+            opacity: 0;
+            transition: opacity 0.5s ease;
+        }
+
+        .active {
+            opacity: 1;
+        }
+
+        /* Responsive adjustments */
+        @media screen and (max-width: 768px) {
+            .overlay h1 {
+                font-size: 1.2rem;
+            }
+
+            .video-info h2 {
+                font-size: 1.2rem;
+            }
+
+            .video-info p {
+                font-size: 0.9rem;
+            }
+
+            .play-pause-button {
+                width: 50px;
+                height: 50px;
+            }
+        }
+
+        @media screen and (max-width: 480px) {
+            .overlay h1 {
+                font-size: 1rem;
+            }
+
+            .video-info h2 {
+                font-size: 1rem;
+            }
+
+            .video-info p {
+                font-size: 0.8rem;
+            }
+
+            .play-pause-button {
+                width: 40px;
+                height: 40px;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <div class="video-wrapper">
+        <!-- Overlay to guide users for swiping -->
+        <div class="overlay">
+            <h1>Swipe Up or Down to Explore</h1>
+        </div>
+
+        <!-- Videos container -->
+        <div id="video1" class="video-container active">
+            <video src="images/vid1.MP4" autoplay muted loop></video>
+            <div class="video-info">
+                <h2>Wedding Shape</h2>
+                <p>Wedding key holders</p>
+                <button class="like-button" id="likeButton1">❤️</button>
+            </div>
+            <button class="play-pause-button" id="playPauseButton1">❚❚</button>
+        </div>
+
+        <div id="video2" class="video-container hidden">
+            <video src="images/vid4.mp4" autoplay muted loop></video>
+            <div class="video-info">
+                <h2>Video Title 2</h2>
+                <p>This is the description for video 2. Enjoy watching!</p>
+                <button class="like-button" id="likeButton2">❤️</button>
+            </div>
+            <button class="play-pause-button" id="playPauseButton2">❚❚</button>
+        </div>
+
+        <div id="video3" class="video-container hidden">
+            <video src="images/vid2 (5).mov" autoplay muted loop></video>
+            <div class="video-info">
+                <h2>Video Title 3</h2>
+                <p>This is the description for video 3. Enjoy watching!</p>
+                <button class="like-button" id="likeButton3">❤️</button>
+            </div>
+            <button class="play-pause-button" id="playPauseButton3">❚❚</button>
+        </div>
+    </div>
+
+    <script>
+        let currentVideoIndex = 0;
+        const videos = document.querySelectorAll('.video-container');
+        const totalVideos = videos.length;
+
+        // Function to show the next video
+        function showVideo(index) {
+            videos.forEach((video, i) => {
+                video.classList.add('hidden');
+                video.classList.remove('active');
+                if (i === index) {
+                    video.classList.add('active');
+                    video.classList.remove('hidden');
+                }
+            });
+        }
+
+        // Detect swipe up and down
+        let startY = 0;
+
+        document.addEventListener('touchstart', (event) => {
+            startY = event.touches[0].clientY;
+        });
+
+        document.addEventListener('touchmove', (event) => {
+            let endY = event.touches[0].clientY;
+
+            if (startY - endY > 50) {
+                // Swipe up
+                currentVideoIndex = (currentVideoIndex + 1) % totalVideos;
+                showVideo(currentVideoIndex);
+            } else if (startY - endY < -50) {
+                // Swipe down
+                currentVideoIndex = (currentVideoIndex - 1 + totalVideos) % totalVideos;
+                showVideo(currentVideoIndex);
+            }
+        });
+
+        // Like button functionality
+        videos.forEach((video, index) => {
+            const likeButton = document.getElementById(`likeButton${index + 1}`);
+            let isLiked = false;
+
+            likeButton.addEventListener('click', () => {
+                isLiked = !isLiked;
+                likeButton.classList.toggle('liked', isLiked);
+            });
+
+            // Play/Pause button functionality
+            const playPauseButton = document.getElementById(`playPauseButton${index + 1}`);
+            const videoElement = video.querySelector('video');
+            playPauseButton.addEventListener('click', () => {
+                if (videoElement.paused) {
+                    videoElement.play();
+                    playPauseButton.textContent = '❚❚'; // Change to pause icon
+                } else {
+                    videoElement.pause();
+                    playPauseButton.textContent = '▶️'; // Change to play icon
+                }
+            });
+        });
+    </script>
+</body>
+</html>

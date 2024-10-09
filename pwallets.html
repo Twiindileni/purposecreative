@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="items.css">
+    <title>BIBLE</title>
+</head>
+<body>
+    <header>
+        <div class="logo">PURPOSE CREATIVE</div>
+    </header>
+
+    <nav class="topnav" id="myTopnav">
+        <a href="index.html" class="active">Home</a>
+        <a href="#news">New Stock</a>
+        <a href="#contact">Contact</a>
+        <a href="javascript:void(0);" class="icon" onclick="toggleMenu()">&#9776;</a>
+    </nav>
+
+    <section class="item-details">
+        <h2>BIBLE</h2>
+        <div class="image-slider">
+            <img class="slides" src="images/printedW (1).jpg" alt="Dress Image 1" style="display:block;">
+            <img class="slides" src="images/printedW (2).jpg" alt="Dress Side View" style="display:none;">
+            <img class="slides" src="images/printedW (3).jpg" alt="Dress Back View" style="display:none;">
+            <img class="slides" src="images/printedW (4).jpg" alt="Dress Back View" style="display:none;">
+        </div>
+
+        <div class="slider-controls">
+            <button class="prev" onclick="plusSlides(-1)">&#10094;</button>
+            <button class="next" onclick="plusSlides(1)">&#10095;</button>
+        </div>
+
+        <div class="product-info">
+            <h3>Price: N$1500.00</h3>
+            <p>Available</p>
+            <button class="add-to-cart-btn">Add to Cart</button>
+        </div>
+    </section>
+
+    <footer>
+        <div class="footer-content">
+            <p>&copy; 2024 PURPOSE CREATIVE</p>
+        </div>
+    </footer>
+
+    <script>
+        let slideIndex = 1;
+        showSlides(slideIndex);
+
+        function plusSlides(n) {
+            showSlides(slideIndex += n);
+        }
+
+        function showSlides(n) {
+            let i;
+            let slides = document.getElementsByClassName("slides");
+            if (n > slides.length) {slideIndex = 1}
+            if (n < 1) {slideIndex = slides.length}
+            for (i = 0; i < slides.length; i++) {
+                slides[i].style.display = "none";
+            }
+            slides[slideIndex-1].style.display = "block";
+        }
+
+        // Function to toggle mobile menu
+        function toggleMenu() {
+            var x = document.getElementById("myTopnav");
+            if (x.className === "topnav") {
+                x.className += " responsive";
+            } else {
+                x.className = "topnav";
+            }
+        }
+    </script>
+</body>
+</html>
